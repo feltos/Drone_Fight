@@ -19,6 +19,11 @@ public class DroneController : MonoBehaviour
 
     [SerializeField]bool isTurnedRight;
 
+    Vector2 shootDirection;
+    bool isEnemy = false;
+    [SerializeField]int health;
+
+
     public bool GetIsTurnedright()
     {
         return isTurnedRight;
@@ -30,7 +35,16 @@ public class DroneController : MonoBehaviour
         coll = GetComponent<Collider2D>();
         basicHorizontalSpeed = horizontalSpeed;
         basicVertcialSpeed = verticalSpeed;
-	}
+
+        if (isTurnedRight)
+        {
+            shootDirection = new Vector2(1, 0); 
+        }
+        if (!isTurnedRight)
+        {
+            shootDirection = new Vector2(-1, 0);
+        }
+    }
 	
 	void Update ()
     {
@@ -39,10 +53,12 @@ public class DroneController : MonoBehaviour
         
         if(horizontal > 0 && !isTurnedRight)
         {
+            shootDirection = new Vector2(1, 0);
             Flip();
         }    
         if(horizontal < 0 && isTurnedRight)
         {
+            shootDirection = new Vector2(-1, 0);
             Flip();
         }
         if(Input.GetKeyDown(KeyCode.Mouse0))
@@ -53,7 +69,14 @@ public class DroneController : MonoBehaviour
 
     void GunShot()
     {
-        Instantiate(gunBullet, gunShotZone.transform.position, gunShotZone.transform.rotation);
+        var shootTransform = Instantiate(gunBullet, gunShotZone.transform.position, gunShotZone.transform.rotation);
+        shootTransform.transform.position = gunShotZone.transform.position;
+        Projectiles proj = shootTransform.gameObject.GetComponent<Projectiles>();
+        if(proj !=null)
+        {
+            proj.Direction = shootDirection.normalized;
+            proj.isEnemyShot = isEnemy;
+        }
     }
 
     private void FixedUpdate()
@@ -74,6 +97,10 @@ public class DroneController : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             horizontalSpeed = 0;
+        }
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+        {
+            health -= 1;
         }
     }
 

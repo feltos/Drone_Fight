@@ -131,6 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalSpeed: 15
   verticalSpeed: 20
+  gunBullet: {fileID: 1950000989629848, guid: 2e6129cd8153bb745bfd37b580de8b09, type: 2}
+  gunShotZone: {fileID: 1607136840661878}
   isTurnedRight: 1
 --- !u!212 &212021327478510936
 SpriteRenderer:

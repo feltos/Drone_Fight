@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212436538405628174}
   - component: {fileID: 58045392073167100}
   - component: {fileID: 50167065167930612}
-  - component: {fileID: 114030581525143312}
-  m_Layer: 0
+  - component: {fileID: 114398080163617238}
+  m_Layer: 9
   m_Name: BasicBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,13 +72,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &114030581525143312
+--- !u!114 &114398080163617238
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,11 +86,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1950000989629848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0eea3edac04fb143bebd64009af1420, type: 3}
+  m_Script: {fileID: 11500000, guid: 510dd1d7c29309548b53a9b1240a429f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  droneController: {fileID: 0}
+  speed: {x: 20, y: 0}
+  Direction: {x: 0, y: 0}
+  droneController: {fileID: 114589304921729044, guid: 10089888ab447e44ab5b3af02efaea29,
+    type: 2}
+  isEnemyShot: 0
 --- !u!212 &212436538405628174
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -126,7 +129,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9057b5450cb76184fa83ec5dba4faf5f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
